@@ -1,12 +1,3 @@
-/_build
-/cover
-/deps
-erl_crash.dump
-*.ez
-*.lock
-
-node_modules
-
 .rebar3
 _*
 .eunit
