@@ -11,12 +11,28 @@
 -export([start/2
         ,stop/1]).
 
+-define(
+ROUTES,
+[
+  {"/api/assets", darapi_handler_assets, []},
+  {'_', darapi_handler_home, []}
+]
+).
+
 %%====================================================================
 %% API
 %%====================================================================
 
-start(_StartType, _StartArgs) ->
-    darapi_sup:start_link().
+start(_Type, _Args) ->
+Dispatch = cowboy_router:compile([{'_', ?ROUTES}]),
+{ok, _} = cowboy:start_http(
+            my_http_listener,
+            100,
+            [{port, darapi_config:value(port)}],
+            [{env, [{dispatch, Dispatch}]}]
+           ),
+darapi_sup:start_link().
+
 
 %%--------------------------------------------------------------------
 stop(_State) ->
