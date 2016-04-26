@@ -1,0 +1,1 @@
+-record(documentrecord, {docid, name}).
