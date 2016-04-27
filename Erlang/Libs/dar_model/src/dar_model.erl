@@ -6,24 +6,24 @@
 -export([
             validate_meta/1,
             assetmetadata_empty/0,
-            assetmetadata/3,
+            assetmetadata/4,
             mymap/0,mymap2/0,validate1/1,validate2/1
         ]).
 
 assetmetadata_empty() ->
-    #{name => "", origin=>"",timestamp=>0}.
+    #{name => "", origin=>"",timestamp=>0, gfsid=> ""}.
 
-assetmetadata(Name,Origin,Timestamp) ->
-    #{name => Name, origin=>Origin, timestamp=>Timestamp}.
+assetmetadata(Name,Origin,Timestamp,GfsId) ->
+    #{name => Name, origin=>Origin, timestamp=>Timestamp, gfsid=>GfsId}.
 
 validate_meta(M) ->
     #{name := PName} = M,
-    #{origin := POrigin} = M,
+    #{gfsid := PGfsid} = M,
     #{timestamp := PTimestamp} = M,
-    P = {PName,POrigin,PTimestamp},
+    P = {PName,PGfsid,PTimestamp},
     case P of
         {PName,_,_} when PName == [] -> false;
-        {_,POrigin,_} when POrigin == [] -> false;
+        {_,PGfsid,_} when PGfsid == [] -> false;
         {_,_,PTimestamp} when PTimestamp == 0 -> false;
         _ -> ok
     end.

@@ -1,6 +1,6 @@
 -sname daractors
 
--setcookie daractors_cookie
+-setcookie scookie
 
 +K true
 +A30

@@ -31,5 +31,5 @@ use Mix.Config
 
 config :dar_dblib, DarDblib.Repo,
   adapter: Mongo.Ecto,
-  database: "local",
+  database: "dar",
   hostname: "localhost"

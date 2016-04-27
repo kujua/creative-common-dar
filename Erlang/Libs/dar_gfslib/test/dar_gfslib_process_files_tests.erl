@@ -30,6 +30,6 @@ read_from_gfs_test() ->
     ?assertEqual({ok,?FILETESTCONTENT,?FILETEST}, R).
 
 save_to_gfs_test() ->
-    M = #{name => ?FILETESTWRITE,origin=>"test",timestamp=>100},
+    M = #{name => ?FILETESTWRITE,origin=>"test",timestamp=>100, gfsid=>"66"},
     R = dar_gfslib_process_files:save_to_gfs(?FILETESTCONTENT,M,?DARDB),
     ?assertEqual({ok,?FILETESTWRITE}, R).

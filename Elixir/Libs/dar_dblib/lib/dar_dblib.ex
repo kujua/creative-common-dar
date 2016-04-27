@@ -17,22 +17,35 @@ defmodule DarDblib.App do
   end
 end
 
-defmodule Dar do
-  use Ecto.Model
+defmodule DarMeta do
+  use Ecto.Schema
+  # import Ecto.Changeset
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
-  schema "dar" do
-    field :city, :string
-    # field :temp_lo, :integer
-    # field :temp_hi, :integer
-    # field :prcp, :float, default: 0.01q
-    # timestamps
+  schema "darmeta" do
+    field :name,       :string
+    field :origin,     :string
+    field :timestamp,  :integer
+    field :gfsid,      :string
+  end
+
+  def changeset(meta,params \\ :empty) do
+      meta
   end
 end
 
 defmodule DarDblib do
   import Ecto.Query
+
+    def write_meta_to_collection(meta) do
+        metax = %DarMeta{gfsid: meta.gfsid, name: meta.name, origin: meta.origin, timestamp: meta.timestamp}
+        cs = DarMeta.changeset metax
+        case DarDblib.Repo.insert!(cs) do
+            meta ->
+                {:ok, meta}
+        end
+    end
 
   def sample_query do
     query = from w in Dar,
