@@ -2,12 +2,14 @@
 
 -ifdef(TEST).
 -export([
-            connect/2,
+            connect/0,
             read_binary/2,
             write_binary/3
         ]).
 -define (FILETEST, "filetest").
 -endif.
+
+-define (DARDB, "dar").
 
 -export([
             read_from_gfs/2,
@@ -18,10 +20,12 @@
 -include_lib("erlmongo/src/erlmongo.hrl").
 
 read_from_gfs(Name,DB) ->
+    DB = ?DARDB,
     {ok,B} = read_binary(Name,DB),
     {ok,B,Name}.
 
 save_to_gfs(Binary,Meta,DB) ->
+    DB = ?DARDB,
     {ok, Name} = validate_meta(Meta),
     {ok,N} = write_binary(Binary, Name,DB),
     {ok,N}.
@@ -32,8 +36,8 @@ validate_meta(M) ->
     {ok,Name}.
 
 write_binary(B,N,DB) ->
-    mongodb:singleServer(def),
-    mongodb:connect(def),
+    DB = ?DARDB,
+    true = connect(),
     Mong = mongoapi:new(def,list_to_binary(DB)),
     Mong:gfsIndexes(),
     PID = Mong:gfsNew(N),
@@ -42,8 +46,8 @@ write_binary(B,N,DB) ->
     {ok,N}.
 
 read_binary(Name,DB) ->
-    mongodb:singleServer(def),
-    mongodb:connect(def),
+    DB = ?DARDB,
+    true = connect(),
     Mong = mongoapi:new(def,list_to_binary(DB)),
     Mong:gfsIndexes(),
     PID = Mong:gfsOpen(#gfs_file{filename = Name}),
@@ -51,18 +55,9 @@ read_binary(Name,DB) ->
     Mong:gfsClose(PID),
     {ok,B}.
 
--ifdef(TEST).
-connect(_,serverconnect) ->
-    mongodb:singleServer(def),
-    C = mongodb:connect(def),
-    {C};
-connect(DB,gfsconnect) ->
+
+connect() ->
     mongodb:singleServer(def),
     mongodb:connect(def),
-    Mong = mongoapi:new(def,list_to_binary(DB)),
-    Mong:gfsIndexes(),
-    PID = Mong:gfsOpen(#gfs_file{filename = ?FILETEST}),
-    B = Mong:gfsRead(PID,100000),
-    Mong:gfsClose(PID),
-    {ok,B}.
--endif.
+    timer:sleep(200),
+    mongodb:is_connected(def).

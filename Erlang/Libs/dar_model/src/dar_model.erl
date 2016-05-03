@@ -6,8 +6,7 @@
 -export([
             validate_meta/1,
             assetmetadata_empty/0,
-            assetmetadata/4,
-            mymap/0,mymap2/0,validate1/1,validate2/1
+            assetmetadata/4
         ]).
 
 assetmetadata_empty() ->
@@ -28,22 +27,24 @@ validate_meta(M) ->
         _ -> ok
     end.
 
-mymap() ->
-    #{key1 => 1, key2 => 2}.
-
-mymap2() ->
-    #{key1 => 99, key2 => 2}.
-
-validate1(#documentrecord{name = Name}) ->
-    case Name of
-        "test" -> 42;
-        _ -> 0
-    end.
-
-validate2(M) ->
-    #{key1 := V1} = M,
-    #{key2 := V2} = M,
-    case V1 of
-        1 -> V2;
-        _ -> -99
-    end.
+%%%-------------------------------------------------------------------
+%%% mymap() ->
+%%%    #{key1 => 1, key2 => 2}.
+%%%
+%%% mymap2() ->
+%%%    #{key1 => 99, key2 => 2}.
+%%%
+%%% validate1(#documentrecord{name = Name}) ->
+%%%    case Name of
+%%%        "test" -> 42;
+%%%        _ -> 0
+%%%    end.
+%%%
+%%% validate2(M) ->
+%%%    #{key1 := V1} = M,
+%%%    #{key2 := V2} = M,
+%%%    case V1 of
+%%%        1 -> V2;
+%%%        _ -> -99
+%%%    end.
+%%%-------------------------------------------------------------------
