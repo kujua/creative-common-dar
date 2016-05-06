@@ -14,7 +14,8 @@ defmodule DarImagelib.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [mod: {DarImagelib.App, []},
+    applications: [:logger,:mogrify]]
   end
 
   # Dependencies can be Hex packages:
@@ -27,6 +28,20 @@ defmodule DarImagelib.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+        {:mogrify, path: "~/Projects/mogrify"},
+        {:dar_model, path: "~/Projects/creative-common-dar/Erlang/Libs/dar_model"}
+    ]
   end
+
+  def getconstant(c) do
+    globdefs = %{
+      respath: "/Users/Wolfgang/Projects/creative-common-dar/Elixir/Libs/dar_imagelib/test/res/"
+    }
+    case c do
+      :respath -> globdefs.respath
+      _ -> ""
+    end
+  end
+
 end
