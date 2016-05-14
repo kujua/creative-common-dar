@@ -33,7 +33,8 @@ defmodule DarDblib.Mixfile do
     [
         {:mongodb_ecto, "~> 0.1"},
         {:dar_model, path: "~/Projects/creative-common-dar/Erlang/Libs/dar_model"},
-        {:meck, git: "https://github.com/eproxus/meck.git"}
+        {:meck, git: "https://github.com/eproxus/meck.git"},
+        {:ex_doc, "~> 0.11", only: :dev}
     ]
   end
 end

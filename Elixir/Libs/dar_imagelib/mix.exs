@@ -30,7 +30,8 @@ defmodule DarImagelib.Mixfile do
   defp deps do
     [
         {:mogrify, path: "~/Projects/mogrify"},
-        {:dar_model, path: "~/Projects/creative-common-dar/Erlang/Libs/dar_model"}
+        {:dar_model, path: "~/Projects/creative-common-dar/Erlang/Libs/dar_model"},
+        {:ex_doc, "~> 0.11", only: :dev}
     ]
   end
 

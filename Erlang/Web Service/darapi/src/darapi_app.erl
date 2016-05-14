@@ -26,7 +26,7 @@ ROUTES,
 start(_Type, _Args) ->
 Dispatch = cowboy_router:compile([{'_', ?ROUTES}]),
 {ok, _} = cowboy:start_http(
-            my_http_listener,
+            http,
             100,
             [{port, darapi_config:value(port)}],
             [{env, [{dispatch, Dispatch}]}]
