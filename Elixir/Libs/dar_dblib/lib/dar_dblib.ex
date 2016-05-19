@@ -48,7 +48,7 @@ defmodule DarDblib do
     end
 
   def sample_query do
-    query = from w in Dar,
+    query = from w in DarMeta,
         #   where: w.prcp > 0.0 or is_nil(w.prcp),
          select: w
     DarDblib.Repo.all(query)
