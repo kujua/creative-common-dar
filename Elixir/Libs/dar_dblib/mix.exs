@@ -16,7 +16,7 @@ defmodule DarDblib.Mixfile do
   def application do
     [
         mod: {DarDblib.App, []},
-        applications: [:logger, :mongodb_ecto, :ecto]
+        applications: [:logger, :mongodb_ecto, :ecto, :exlager]
     ]
   end
 
@@ -34,7 +34,9 @@ defmodule DarDblib.Mixfile do
         {:mongodb_ecto, "~> 0.1"},
         {:dar_model, path: "~/Projects/creative-common-dar/Erlang/Libs/dar_model"},
         {:meck, git: "https://github.com/eproxus/meck.git"},
-        {:ex_doc, "~> 0.11", only: :dev}
+        {:ex_doc, "~> 0.11", only: :dev},
+        {:lager, git: "https://github.com/basho/lager.git"},
+        {:exlager ,git: "https://github.com/khia/exlager.git"}
     ]
   end
 end

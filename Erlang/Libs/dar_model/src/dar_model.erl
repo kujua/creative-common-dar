@@ -2,7 +2,6 @@
 
 -include("dar_model.hrl").
 
-%% API exports
 -export([
           validate_asset_meta/1,
           assetmetadata_empty/0,
@@ -15,6 +14,7 @@
           validate_imageprocessing/1
         ]).
 
+% asset metadata
 assetmetadata_empty() ->
   #{name => "", origin=>"",timestamp=>0, gfsid=> ""}.
 
@@ -33,6 +33,7 @@ validate_asset_meta(M) ->
       _ -> ok
   end.
 
+% story
 storymodel_empty() ->
   #{title => "", text=>[], illustrations=>[],timestamp_creation=>0, meta=> {}, stid =>0}.
 
@@ -51,33 +52,12 @@ validate_story_meta(M) ->
     _ -> ok
   end.
 
-  imageprocessingmodel_empty() ->
-    #{process=>undefined, imagelist=>[], options=>{}}.
+% image processing
+imageprocessingmodel_empty() ->
+  #{process=>undefined, imagelist=>[], options=>{}}.
 
-  imageprocessingmodel(Proc,Imagelist,Options) ->
-    #{process=>Proc, imagelist=>Imagelist, options=>Options}.
+imageprocessingmodel(Proc,Imagelist,Options) ->
+  #{process=>Proc, imagelist=>Imagelist, options=>Options}.
 
-  validate_imageprocessing(Model) ->
-    ok.
-
-%%%-------------------------------------------------------------------
-%%% mymap() ->
-%%%    #{key1 => 1, key2 => 2}.
-%%%
-%%% mymap2() ->
-%%%    #{key1 => 99, key2 => 2}.
-%%%
-%%% validate1(#documentrecord{name = Name}) ->
-%%%    case Name of
-%%%        "test" -> 42;
-%%%        _ -> 0
-%%%    end.
-%%%
-%%% validate2(M) ->
-%%%    #{key1 := V1} = M,
-%%%    #{key2 := V2} = M,
-%%%    case V1 of
-%%%        1 -> V2;
-%%%        _ -> -99
-%%%    end.
-%%%-------------------------------------------------------------------
+validate_imageprocessing(Model) ->
+  ok.

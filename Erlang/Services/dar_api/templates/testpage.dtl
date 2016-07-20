@@ -1,0 +1,9 @@
+{% extends "homepage.dtl" %}
+
+<html>
+  <body>
+    {% block bodytext %}
+      Test: {{ test }}
+    {% endblock %}
+  </body>
+</html>

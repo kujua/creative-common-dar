@@ -1,0 +1,2 @@
+defmodule DARModel do
+end

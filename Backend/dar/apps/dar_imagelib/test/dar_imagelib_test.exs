@@ -1,0 +1,8 @@
+defmodule DARImageLibTest do
+  use ExUnit.Case
+  doctest DARImageLib
+
+  test "the truth" do
+    assert 1 + 1 == 2
+  end
+end

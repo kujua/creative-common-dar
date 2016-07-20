@@ -37,6 +37,18 @@ end
 
 defmodule DarDblib do
   import Ecto.Query
+  require Lager
+
+    def lager_messages do
+      Lager.debug "Hi debug"
+      Lager.info "Hi error"
+      Lager.notice "Hi notice"
+      Lager.warning "Hi warning"
+      Lager.error "Hi error"
+      Lager.critical "Hi critical"
+      Lager.alert "Hi alert"
+      Lager.emergency "Hi emergency"
+    end
 
     def write_meta_to_collection(meta) do
         metax = %DarMeta{gfsid: meta.gfsid, name: meta.name, origin: meta.origin, timestamp: meta.timestamp}

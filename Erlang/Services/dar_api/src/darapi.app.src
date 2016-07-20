@@ -8,7 +8,11 @@
     stdlib,
     cowboy
    ]},
-  {env,[]},
+  {env,[
+      {lager, [
+        {colored, true}
+      ]}
+  ]},
   {modules, []},
 
   {maintainers, []},
