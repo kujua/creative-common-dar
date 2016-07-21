@@ -26,7 +26,8 @@ defmodule DARRouter do
   #   {:noreply, state}
   # end
   def handle_call({:msg, msg}, _from, state) do
-    {:reply, {:response, msg}, state}
+    ret = "Message from Server"
+    {:reply, {:response, {:request, ret}}, state}
   end
 
   # def handle_cast({}, state) do

@@ -1,20 +1,14 @@
 defmodule DARDataStore do
-  use Application
+  use Supervisor
 
-  # See http://elixir-lang.org/docs/stable/elixir/Application.html
-  # for more information on OTP Applications
-  def start(_type, _args) do
-    import Supervisor.Spec, warn: false
+  def start_link do
+    Supervisor.start_link(__MODULE__, [], name: {:global, __MODULE__})
+  end
 
-    # Define workers and child supervisors to be supervised
+  def init(_opts) do
     children = [
-      # Starts a worker by calling: DARDataStore.Worker.start_link(arg1, arg2, arg3)
-      # worker(DARDataStore.Worker, [arg1, arg2, arg3]),
+      worker(DARMetaData,[DARMetaData])
     ]
-
-    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
-    # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: DARDataStore.Supervisor]
-    Supervisor.start_link(children, opts)
+    supervise children, strategy: :one_for_one
   end
 end

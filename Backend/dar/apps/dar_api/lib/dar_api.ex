@@ -12,8 +12,10 @@ defmodule DarApi do
       supervisor(DarApi.Repo, []),
       # Start the endpoint when the application starts
       supervisor(DarApi.Endpoint, []),
+      worker(DARRouter,[DARRouter]),
 
-      worker(DARRouter,[DARRouter])
+      supervisor(DARDataStore,[]),
+      supervisor(DARWorkflow,[])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

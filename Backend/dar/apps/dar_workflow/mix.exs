@@ -18,8 +18,8 @@ defmodule DARWorkflow.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger],
-     mod: {DARWorkflow, []}]
+    [applications: [:logger]]
+    #  mod: {DARWorkflow, []}]
   end
 
   # Dependencies can be Hex packages:

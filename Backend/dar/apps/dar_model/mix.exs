@@ -35,6 +35,9 @@ defmodule DARModel.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:exconstructor, "~> 1.0.2"},
+      {:poison, "~> 2.0"}
+    ]
   end
 end
