@@ -2,17 +2,6 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-config :dar_metadata, DARMetaData.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  database: "dar",
-  hostname: "localhost"
-
-
-
-
-config :dar_metadata, ecto_repos: [DARMetaData.Repo]
-
-
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,
@@ -21,11 +10,11 @@ config :dar_metadata, ecto_repos: [DARMetaData.Repo]
 
 # You can configure for your application as:
 #
-#     config :dar_metadata, key: :value
+#     config :dar_gfs, key: :value
 #
 # And access this configuration in your application as:
 #
-#     Application.get_env(:dar_metadata, :key)
+#     Application.get_env(:dar_gfs, :key)
 #
 # Or configure a 3rd-party app:
 #

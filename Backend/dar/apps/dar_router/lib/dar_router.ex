@@ -26,7 +26,7 @@ defmodule DARRouter do
   #   {:noreply, state}
   # end
   def handle_call({:msg, msg}, _from, state) do
-    ret = "Message from Server"
+    ret = DARWorkflow.process_message <> ", " <> DARDataStore.process_message
     {:reply, {:response, {:request, ret}}, state}
   end
 

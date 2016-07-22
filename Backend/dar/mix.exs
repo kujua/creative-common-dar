@@ -21,6 +21,8 @@ defmodule Dar.Mixfile do
   # Dependencies listed here are available only for this project
   # and cannot be accessed from applications inside the apps folder
   defp deps do
-    []
+    [
+      # {:dar_gfslib, path: "~/Projects/creative-common-dar/Erlang/Libs/dar_gfslib"}
+    ]
   end
 end

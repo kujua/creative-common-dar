@@ -1,8 +1,8 @@
-defmodule DARMetaData.Mixfile do
+defmodule DARGfs.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :dar_metadata,
+    [app: :dar_gfs,
      version: "0.1.0",
      build_path: "../../_build",
      config_path: "../../config/config.exs",
@@ -18,7 +18,7 @@ defmodule DARMetaData.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :postgrex, :ecto]]
+    [applications: [:logger]]
   end
 
   # Dependencies can be Hex packages:
@@ -36,8 +36,6 @@ defmodule DARMetaData.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:postgrex, ">= 0.0.0"},
-      {:ecto, "~> 2.0.0"}
     ]
   end
 end

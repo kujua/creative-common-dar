@@ -16,7 +16,7 @@
             save_to_gfs/3
         ]).
 
--include_lib("dar_model/src/dar_model.hrl").
+% -include_lib("dar_model/src/dar_model.hrl").
 -include_lib("erlmongo/src/erlmongo.hrl").
 
 read_from_gfs(Name,DB) ->

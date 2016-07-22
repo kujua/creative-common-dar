@@ -1,12 +1,18 @@
-defmodule DARMetaData do
+defmodule DARGfs do
   use GenServer
 
   def process_message do
-    "DARMetaData"
+     case :rpc.call(
+              :"dargfslib@Wolfgangs-MacBook-Pro",
+              :dar_gfslib_process_files,
+              :read_from_gfs,
+              ['filetestwrite','dar']) do
+        {:ok, f, fname} -> f
+        _ -> "node down"
+      end
   end
 
   def start_link(name) do
-    DARMetaData.Repo.start_link
     GenServer.start_link(__MODULE__, :ok, name: name)
   end
 
