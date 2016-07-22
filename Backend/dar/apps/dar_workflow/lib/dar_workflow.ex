@@ -6,9 +6,12 @@ defmodule DARWorkflow do
       <> DARImageLib.process_message
       <> ", "
       <> DARPdfLib.process_message
+      <> ", Workflow:"
+      <> to_string(DARWf.get_count)
   end
 
   def start_link do
+    DARWf.start_link
     Supervisor.start_link(__MODULE__, [], name: {:global, __MODULE__})
   end
 

@@ -35,6 +35,8 @@ defmodule DARPdfLib.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:gutenex, "~> 0.2.0"}
+    ]
   end
 end
