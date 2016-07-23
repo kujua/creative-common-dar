@@ -7,6 +7,10 @@ defmodule DARWf do
     GenStateMachine.start_link(DARWf, {:off, 5}, name: DARWf)
   end
 
+  def terminate do
+      GenStateMachine.stop(DARWf, :normal)
+  end
+
   def flip do
     GenStateMachine.cast(DARWf, :flip)
   end
