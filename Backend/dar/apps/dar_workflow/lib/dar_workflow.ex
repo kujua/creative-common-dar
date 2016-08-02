@@ -1,16 +1,30 @@
 defmodule DARWorkflow do
   use Supervisor
 
-  def process_message do
-    DARWf.start_link
-    msg = "Message from Workflow: "
-      <> DARImageLib.process_message
-      <> ", "
-      <> DARPdfLib.process_message
-      <> ", Workflow:"
-      <> to_string(DARWf.get_count)
-    DARWf.terminate
-    msg
+  def process_message(m) do
+    case m.state do
+
+      :requestreceived ->
+        DARWf.start_link m
+        DARWf.new_request
+
+      :requestvalidated ->
+        DARWf.retrieve_data
+
+      :retrievingdata ->
+        :ok
+
+      :processingimage ->
+        :ok
+
+      :creatingdocument ->
+        :ok
+
+      :requestprocessed ->
+        DARWf.terminate
+        DARModelInternalMessage.get_json m
+    end
+
   end
 
   def start_link do

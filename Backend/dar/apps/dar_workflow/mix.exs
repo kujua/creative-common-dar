@@ -18,7 +18,7 @@ defmodule DARWorkflow.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :gen_state_machine]]
+    [applications: [:logger, :gen_state_machine, :dar_model]]
     #  mod: {DARWorkflow, []}]
   end
 

@@ -14,27 +14,23 @@ defmodule DARImageLib.Mixfile do
      deps: deps]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :mogrify, :dar_model]]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # To depend on another app inside the umbrella:
-  #
-  #   {:myapp, in_umbrella: true}
-  #
-  # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:mogrify, path: "~/Projects/creative-common-dar/Libs/mogrify"}
+    ]
+  end
+
+  def getconstant(c) do
+    globdefs = %{
+      respath: "~/Projects/creative-common-dar/Elixir/Libs/dar_imagelib/test/res/"
+    }
+    case c do
+      :respath -> globdefs.respath
+      _ -> ""
+    end
   end
 end

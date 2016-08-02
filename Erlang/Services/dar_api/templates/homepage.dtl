@@ -1,7 +1,0 @@
-<html>
-  <body>
-    {% block bodytext %}
-      DAR API
-    {% endblock %}
-  </body>
-</html>

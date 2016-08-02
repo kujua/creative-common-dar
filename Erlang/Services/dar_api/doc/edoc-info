@@ -1,4 +1,0 @@
-%% encoding: UTF-8
-{application,darapi}.
-{modules,[daractors_process_json,darapi_app,darapi_config,
-          darapi_handler_assets,darapi_handler_home,darapi_sup]}.
