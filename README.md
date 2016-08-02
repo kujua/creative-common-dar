@@ -1,5 +1,7 @@
 # Digital Asset Repository
 
+## ! Work in Progress !
+
 This repository framework is optimized for Creative Common licensed content.
 
 It was inspired by the [African Storybook Project](http://africanstorybook.org) and other efforts to implement a global repository to enhance literacy of children in Africa and elsewhere.
