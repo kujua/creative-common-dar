@@ -11,14 +11,14 @@ defmodule DARWorkflow do
       :requestvalidated ->
         DARWf.retrieve_data
 
-      :retrievingdata ->
-        :ok
+      :dataretrieved ->
+        DARWf.process_image
 
-      :processingimage ->
-        :ok
+      :imageprocessed ->
+        DARWf.create_document
 
-      :creatingdocument ->
-        :ok
+      :documentcreated ->
+        DARWf.validate_response
 
       :requestprocessed ->
         DARWf.terminate

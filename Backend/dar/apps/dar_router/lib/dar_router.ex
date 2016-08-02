@@ -1,7 +1,7 @@
 defmodule DARRouter do
   use GenServer
   require DARModelInternalMessage
-  
+
   def start_link(name) do
     GenServer.start_link(__MODULE__, :ok, name: name)
   end
@@ -27,7 +27,7 @@ defmodule DARRouter do
   #   {:noreply, state}
   # end
   def handle_call({:msg, msg}, _from, state) do
-    ret = DARWorkflow.process_message %DARModelInternalMessage{:name => "test"} # <> ", " <> DARDataStore.process_message
+    ret = DARWorkflow.process_message %DARModelInternalMessage{:name => "test2"} # <> ", " <> DARDataStore.process_message
     {:reply, {:response, {:request, ret}}, state}
   end
 
