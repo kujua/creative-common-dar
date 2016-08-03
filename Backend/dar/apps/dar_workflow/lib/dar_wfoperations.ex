@@ -1,21 +1,45 @@
 defmodule DARWorkflowOperations do
-  def validate_request(msg) do
-    :ok
+  def validate_request msg do
+    %{:name => pname} = msg
+    %{:metaid => pgmetaid} = msg
+    %{:actions => pactions} = msg
+    p = {pname,pgmetaid,pactions}
+    case p do
+        {pname,_,_} when pname == "" -> {:error, "Name empty"}
+        {_,pgmetaid,_} when pgmetaid == "" -> {:error, "MetaId empty"}
+        {_,_,pactions} when pactions == [] -> {:error, "Actions list empty"}
+        _ ->
+          ag = []
+          ag = if Enum.member?(msg.actions, DARAction.retrieveimage), do:  List.insert_at(ag, 0, DARActionGroup.images), else: ag
+          ag = if Enum.member?(msg.actions, DARAction.retrievetext), do:  List.insert_at(ag, 0, DARActionGroup.document), else: ag
+          {:ok, ag}
+    end
+
   end
 
-  def retrieve_data(msg) do
-    :ok
+  def retrieve_data msg do
+    meta = DarMetaData.DataAccess.get_meta msg.metaid
+    case m = List.first(meta) do
+      nil ->
+        {:error, "Retrieve Data error"}
+      _ ->
+        {:ok, DARModelMetaData.from_schema(m)}
+    end
   end
 
-  def process_image(msg) do
-    :ok
+  def process_image msg do
+    metaimage = DarMetaData.DataAccess.get_imagemeta msg.metaid
+    l = (for n <- metaimage, into:  [], do: n.id)
+    res = DARImageLib.Process.process_message l
+    {:ok, res}
   end
 
-  def create_document(msg) do
-    :ok
+  def create_document msg do
+    pdfid = DARPdfLib.process_message msg
+    {:ok, pdfid}
   end
 
-  def validate_response(msg) do
-    :ok
+  def validate_response msg do
+    {:ok, ""}
   end
 end

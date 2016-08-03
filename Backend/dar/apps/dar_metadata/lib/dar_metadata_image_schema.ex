@@ -1,17 +1,16 @@
-defmodule MetaData do
+defmodule MetaDataImage do
   use Ecto.Schema
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
-  schema "metadata" do
+  schema "metadataimage" do
     field :name,        :string
+    field :metaid,      :string
     field :timestamp,   :integer
-    field :origin,      :string
-    field :haspdf,      :boolean
     field :gfsid,       :string
   end
 
-  def changeset(meta,params \\ :empty) do
+  def changeset(meta, params \\ :empty) do
       meta
   end
 end

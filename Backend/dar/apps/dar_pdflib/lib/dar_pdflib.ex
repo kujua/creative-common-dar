@@ -1,8 +1,8 @@
 defmodule DARPdfLib do
   use GenServer
 
-  def process_message do
-    "DARPdfLib"
+  def process_message msg do
+    "12345678"
   end
 
   def start_link(name) do

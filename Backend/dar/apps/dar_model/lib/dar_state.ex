@@ -10,6 +10,7 @@ defmodule DARState do
   @documentcreated :documentcreated
   @validateresponse :validateresponse
   @requestprocessed :requestprocessed
+  @errorstate :errorstate
 
   def idle do
     @idle
@@ -53,5 +54,9 @@ defmodule DARState do
 
   def requestprocessed do
     @requestprocessed
+  end
+
+  def errorstate do
+    @errorstate
   end
 end

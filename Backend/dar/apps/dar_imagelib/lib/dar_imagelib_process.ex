@@ -6,6 +6,10 @@ defmodule DARImageLib.Process do
     Path.join(path,file)
   end
 
+  def process_message msg do
+    msg
+  end
+
   def resize do
       Mogrify.open(path_resource("test.jpg"))
           |> Mogrify.copy

@@ -3,7 +3,6 @@ defmodule DARWorkflow do
 
   def process_message(m) do
     case m.state do
-
       :requestreceived ->
         DARWf.start_link m
         DARWf.new_request
@@ -12,19 +11,34 @@ defmodule DARWorkflow do
         DARWf.retrieve_data
 
       :dataretrieved ->
-        DARWf.process_image
+        if Enum.member?(m.actiongroups, DARActionGroup.images) do
+          DARWf.process_image
+        else
+          if Enum.member?(m.actiongroups, DARActionGroup.document) do
+            DARWf.create_document
+          else
+            DARWf.validate_response
+          end
+        end
 
       :imageprocessed ->
-        DARWf.create_document
+        if Enum.member?(m.actiongroups, DARActionGroup.document) do
+          DARWf.create_document
+        else
+          DARWf.validate_response
+        end
 
       :documentcreated ->
         DARWf.validate_response
 
       :requestprocessed ->
         DARWf.terminate
+        # DARModelInternalMessage.get_json m
+        DARModelResponseMessage.get_json m
+      :errorstate ->
+        DARWf.terminate
         DARModelInternalMessage.get_json m
     end
-
   end
 
   def start_link do

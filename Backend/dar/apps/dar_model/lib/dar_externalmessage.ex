@@ -3,7 +3,8 @@ defmodule DARModelExternalMessage do
   This model is used in communication between clients and backend.
   """
   @derive [Poison.Encoder]
-  defstruct gfsid:        "",
+  defstruct metaid:       "",
+            gfsid:        "",
             name:         "",
             comment:      "",
             actions:      []

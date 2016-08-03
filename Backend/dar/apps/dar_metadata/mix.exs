@@ -18,7 +18,7 @@ defmodule DARMetaData.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :postgrex, :ecto]]
+    [applications: [:logger, :postgrex, :ecto, :calendar]]
   end
 
   # Dependencies can be Hex packages:
@@ -37,7 +37,8 @@ defmodule DARMetaData.Mixfile do
   defp deps do
     [
       {:postgrex, ">= 0.0.0"},
-      {:ecto, "~> 2.0.0"}
+      {:ecto, "~> 2.0.0"},
+      {:calendar, "~> 0.16.0"}
     ]
   end
 end
