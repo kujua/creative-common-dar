@@ -12,4 +12,8 @@ defmodule DARModelResponseMessage do
     }
     Poison.encode! msg
   end
+
+  def to_json m do
+    Poison.encode! m
+  end
 end

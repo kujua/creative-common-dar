@@ -15,7 +15,8 @@ defmodule DARModelInternalMessage do
             actions:      [],
             actiongroups: [],
             images:       [],
-            metastruct:   %DARModelMetaData{}
+            metastruct:   %DARModelMetaData{},
+            actionfilter: []
             use ExConstructor
 
   def get_json m do
@@ -28,7 +29,8 @@ defmodule DARModelInternalMessage do
       :name => m.name,
       :comment => m.comment,
       :gfsid => m.gfsid,
-      :actions => m.actions
+      :actions => m.actions,
+      :actionfilter => m.actionfilter
     }
   end
   # @behaviour Access

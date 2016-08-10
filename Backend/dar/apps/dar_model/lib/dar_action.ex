@@ -1,6 +1,6 @@
 defmodule DARAction do
     @retrievedoclist_all :retrievedoclist_all
-    @retrievedoclist_filter :retrievedoclist_filter
+    @retrievedoc :retrievedoc
     @retrievedocument :retrievedocument
     @retrieveimage :retrieveimage
     @retrievetext :retrievetext
@@ -9,8 +9,8 @@ defmodule DARAction do
       @retrievedoclist_all
     end
 
-    def retrievedoclist_filter do
-      @retrievedoclist_filter
+    def retrievedoc do
+      @retrievedoc
     end
 
     def retrievedocument do

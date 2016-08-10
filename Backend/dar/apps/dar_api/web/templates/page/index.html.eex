@@ -1,7 +1,5 @@
 <div class="jumbotron">
-  <!-- <h2>DAR API</h2> -->
-  <p class="lead">...</p>
   <p>
-    <%= @msg %>
+      See documentation for available resource paths.
   </p>
 </div>

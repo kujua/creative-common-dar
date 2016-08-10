@@ -5,8 +5,8 @@ defmodule DARWorkflowOperations do
     %{:actions => pactions} = msg
     p = {pname,pgmetaid,pactions}
     case p do
-        {pname,_,_} when pname == "" -> {:error, "Name empty"}
-        {_,pgmetaid,_} when pgmetaid == "" -> {:error, "MetaId empty"}
+        # {pname,_,_} when pname == "" -> {:error, "Name empty"}
+        # {_,pgmetaid,_} when pgmetaid == "" -> {:error, "MetaId empty"}
         {_,_,pactions} when pactions == [] -> {:error, "Actions list empty"}
         _ ->
           ag = []
@@ -18,12 +18,19 @@ defmodule DARWorkflowOperations do
   end
 
   def retrieve_data msg do
-    meta = DarMetaData.DataAccess.get_meta msg.metaid
-    case m = List.first(meta) do
-      nil ->
-        {:error, "Retrieve Data error"}
-      _ ->
-        {:ok, DARModelMetaData.from_schema(m)}
+    if Enum.member?(msg.actions, DARAction.retrievedoclist_all) do
+      metalist = DarMetaData.DataAccess.get_meta_all
+      {:ok, DARModelMetaData.from_schema_list(metalist)}
+    else
+      if Enum.member?(msg.actions, DARAction.retrievedoc) do
+        meta = DarMetaData.DataAccess.get_meta msg.metaid
+        case m = List.first(meta) do
+          nil ->
+            {:error, "Retrieve Data error"}
+          _ ->
+            {:ok, DARModelMetaData.from_schema(m)}
+        end
+      end
     end
   end
 

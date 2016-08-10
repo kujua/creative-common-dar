@@ -31,7 +31,7 @@ save_to_gfs(Binary,Meta,DB) ->
     {ok,N}.
 
 validate_meta(M) ->
-    ok = dar_model:validate_meta(M),
+    % ok = dar_model:validate_meta(M),
     #{name := Name} = M,
     {ok,Name}.
 
@@ -51,7 +51,7 @@ read_binary(Name,DB) ->
     Mong = mongoapi:new(def,list_to_binary(DB)),
     Mong:gfsIndexes(),
     PID = Mong:gfsOpen(#gfs_file{filename = Name}),
-    B = Mong:gfsRead(PID,100000),
+    B = Mong:gfsRead(PID,5000000),
     Mong:gfsClose(PID),
     {ok,B}.
 

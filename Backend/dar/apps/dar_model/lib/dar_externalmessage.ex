@@ -7,7 +7,8 @@ defmodule DARModelExternalMessage do
             gfsid:        "",
             name:         "",
             comment:      "",
-            actions:      []
+            actions:      [],
+            actionfilter: []
             use ExConstructor
 
   def from_json m do

@@ -33,8 +33,8 @@ defmodule DARWorkflow do
 
       :requestprocessed ->
         DARWf.terminate
-        # DARModelInternalMessage.get_json m
         DARModelResponseMessage.get_json m
+        
       :errorstate ->
         DARWf.terminate
         DARModelInternalMessage.get_json m

@@ -29,6 +29,12 @@ defmodule DarApi.ConnCase do
 
       # The default endpoint for testing
       @endpoint DarApi.Endpoint
+
+      def send_request(conn) do
+        conn
+        |> put_private(:plug_skip_csrf_protection, true)
+        |> DarApi.Endpoint.call([])
+      end
     end
   end
 

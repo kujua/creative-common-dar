@@ -7,7 +7,10 @@ defmodule DARRouter do
 
   def process_message(server, msg) do
     case msg do
-      {:request, _} -> GenServer.call(server, {:msg, msg})
+      {:get_assets_all, params} ->
+        GenServer.call(server, {:msg, msg})
+      {:request, _} ->
+        GenServer.call(server, {:msg, msg})
       _ -> {:failure, msg}
     end
 
@@ -33,15 +36,21 @@ defmodule DARRouter do
     # }
 # xmsg = %DARModelExternalMessage {:metaid => "6a75e636-3e9d-41e7-9462-88980926a832",:gfsid => "",:name => "testexternal",:comment => "external comment",:actions => [DARAction.retrievedoclist_all, DARAction.retrieveimage]}
 # m = DARModelInternalMessage.from_external_message xmsg
-    xmsg = %DARModelExternalMessage {
-      :metaid => "6a75e636-3e9d-41e7-9462-88980926a832",
-      :gfsid => "",
-      :name => "testexternal",
-      :comment => "external comment",
-      :actions => [DARAction.retrievedoclist_all, DARAction.retrieveimage, DARAction.retrievetext, DARAction.retrieveimage]
-    }
-    ret = DARWorkflow.process_message (DARModelInternalMessage.from_external_message xmsg)
-    {:reply, {:response, {:request, ret}}, state}
+    {action, params} = msg
+    case action do
+      :get_assets_all ->
+        xmsg = %{
+          :name => "",
+          :actions => [DARAction.retrievedoclist_all],
+          :actionfilter => params,
+          :comment => "",
+          :metaid => "",
+          :gfsid => ""
+        }
+        ret = DARWorkflow.process_message (DARModelInternalMessage.from_external_message xmsg)
+        {:reply, {:response, {:request, ret}}, state}
+    end
+
   end
 
   # def handle_cast({}, state) do
